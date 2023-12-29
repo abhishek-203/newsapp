@@ -2,6 +2,17 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 export default class Navbar extends Component {
+  constructor(){
+    super()
+    this.state ={
+      search:""
+    }
+  }
+  postSearch(e){
+    e.preventDefault()
+    this.props.changeSearch(this.state.search)
+    this.setState({search:""})
+  }
   render() {
     return (
       <>
@@ -27,7 +38,11 @@ export default class Navbar extends Component {
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <Link className="nav-link text-light active" aria-current="page" to="/All">
+                  <Link
+                    className="nav-link text-light active"
+                    aria-current="page"
+                    to="/All"
+                  >
                     All
                   </Link>
                 </li>
@@ -93,8 +108,7 @@ export default class Navbar extends Component {
                   </ul>
                 </li>
                 <li className="nav-item dropdown">
-                  <a
-                    className="nav-link text-light dropdown-toggle"
+                  <a className="nav-link text-light dropdown-toggle"
                     href="#"
                     role="button"
                     data-bs-toggle="dropdown"
@@ -104,34 +118,38 @@ export default class Navbar extends Component {
                   </a>
                   <ul className="dropdown-menu">
                     <li>
-                      <Link className="dropdown-item" to="/English">
+                      <button
+                        className="dropdown-item"
+                      onClick={()=>this.props.changeLanguage("en")}
+                      >
                         English
-                      </Link>
-                    </li> 
-                    <li>
-                      <hr className="dropdown-divider" />
+                      </button>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="/Hindi">
+                      <button
+                        className="dropdown-item"
+                      onClick={()=>this.props.changeLanguage("hi")}
+                      >
                         Hindi
-                      </Link>
+                      </button>
                     </li>
                   </ul>
                 </li>
-                {/* <li className="nav-item">
-                  <a className="nav-link text-light disabled" aria-disabled="true">
-                    Disabled
-                  </a>
-                </li> */}
               </ul>
-              <form className="d-flex" role="search">
+              <form className="d-flex" role="search" onSubmit={(e)=>this.postSearch(e)}>
                 <input
                   className="form-control me-2"
                   type="search"
+                  name="search"
                   placeholder="Search"
+                  onChange={(e)=>this.setState({search:e.target.value})}
+                  value={this.state.search}
                   aria-label="Search"
                 />
-                <button className="btn btn-outline-dark text-light" type="submit">
+                <button
+                  className="btn btn-outline-dark text-light"
+                  type="submit"
+                >
                   Search
                 </button>
               </form>
