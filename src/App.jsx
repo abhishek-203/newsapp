@@ -5,7 +5,7 @@ import Footer from './Footer'
 import Home from './Home'
 
 export default class App extends Component {
-  constructor() {   
+  constructor() {
     super()
     this.state ={
       language:"hi",
