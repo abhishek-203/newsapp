@@ -11,24 +11,40 @@ export default class Home extends Component {
       page: 1
     };
   }
-  getAPIData = async (query = "All") => {
-    let response = await fetch(`https://newsapi.org/v2/everything?q=${query}&language=${this.props.language}&page=1&pageSize=12&sortBy=publishedAt&apiKey=e4336a0cea4d49149177333158b05fa3`)
-    response = await response.json()
-    this.setState({
-      articles: response.articles.filter((item) => item.title !== "[Removed]"),
-      totalResults: response.totalResults
-    })
+getAPIData = async (query = "All") => {
+    try {
+      let response = await fetch(`https://newsapi.org/v2/everything?q=${query}&language=${this.props.language}&page=1&pageSize=12&sortBy=publishedAt&apiKey=e4336a0cea4d49149177333158b05fa3`)
+      if (!response.ok) {
+        console.error("Error fetching news:", response.statusText);
+        return;
+      }
+      response = await response.json()
+      this.setState({
+        articles: response.articles.filter((item) => item.title !== "[Removed]"),
+        totalResults: response.totalResults
+      })
+    } catch (error) {
+      console.error("Fetch error:", error);
+    }
   }
   componentDidMount() {
     this.getAPIData()
   }
-  fetchData = async () => {
+fetchData = async () => {
     this.setState({ page: this.state.page + 1 })
-    let response = await fetch(`https://newsapi.org/v2/everything?q=${this.props.q}&language=${this.props.language}&page=${this.state.page}&pageSize=12&sortBy=publishedAt&apiKey=e4336a0cea4d49149177333158b05fa3`)
-    response = await response.json()
-    this.setState({
-      articles: this.state.articles.concat(response.articles.filter((item) => item.title !== "[Removed]"))
-    })
+    try {
+      let response = await fetch(`https://newsapi.org/v2/everything?q=${this.props.q}&language=${this.props.language}&page=${this.state.page}&pageSize=12&sortBy=publishedAt&apiKey=e4336a0cea4d49149177333158b05fa3`)
+      if (!response.ok) {
+        console.error("Error fetching news:", response.statusText);
+        return;
+      }
+      response = await response.json()
+      this.setState({
+        articles: this.state.articles.concat(response.articles.filter((item) => item.title !== "[Removed]"))
+      })
+    } catch (error) {
+      console.error("Fetch error:", error);
+    }
   }
   componentDidUpdate(old) {
     if (this.props !== old) {

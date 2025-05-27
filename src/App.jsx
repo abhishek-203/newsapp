@@ -8,7 +8,7 @@ export default class App extends Component {
   constructor() {
     super()
     this.state ={
-      language:"hi",
+      language:"en",  // changed from "hi" to "en"
       search:""
     }
   }
