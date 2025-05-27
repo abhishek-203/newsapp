@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 export default class Navbar extends Component {
-  constructor(){
-    super()
-    this.state ={
-      search:""
-    }
+  constructor() {
+    super();
+    this.state = {
+      search: "",
+    };
   }
-  postSearch(e){
-    e.preventDefault()
-    this.props.changeSearch(this.state.search)
-    this.setState({search:""})
+  postSearch(e) {
+    e.preventDefault();
+    this.props.changeSearch(this.state.search);
+    this.setState({ search: "" });
   }
   render() {
     return (
@@ -62,15 +62,25 @@ export default class Navbar extends Component {
                   </Link>
                 </li>
                 <li className="nav-item dropdown">
-                  <a
+                  {/* <a
                     className="nav-link text-light dropdown-toggle"
-                    // href="#"
+                    href="#"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
                     Other
-                  </a>
+                    </a> */}
+                  <button
+                    className="nav-link text-light dropdown-toggle"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    style={{ background: "none", border: "none" }}
+                  >
+                    Other
+                  </button>
+
                   <ul className="dropdown-menu">
                     <li>
                       <Link className="dropdown-item" to="/Science">
@@ -108,19 +118,30 @@ export default class Navbar extends Component {
                   </ul>
                 </li>
                 <li className="nav-item dropdown">
-                  <a className="nav-link text-light dropdown-toggle"
-                    // href="#"
+                  {/* <a
+                    className="nav-link text-light dropdown-toggle"
+                    href="#"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
                     Language
-                  </a>
+                    </a> */}
+                  <button
+                    className="nav-link text-light dropdown-toggle"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    style={{ background: "none", border: "none" }}
+                    >
+                    Language
+                  </button>
+
                   <ul className="dropdown-menu">
                     <li>
                       <button
                         className="dropdown-item"
-                      onClick={()=>this.props.changeLanguage("en")}
+                        onClick={() => this.props.changeLanguage("en")}
                       >
                         English
                       </button>
@@ -128,7 +149,7 @@ export default class Navbar extends Component {
                     <li>
                       <button
                         className="dropdown-item"
-                      onClick={()=>this.props.changeLanguage("hi")}
+                        onClick={() => this.props.changeLanguage("hi")}
                       >
                         Hindi
                       </button>
@@ -136,13 +157,17 @@ export default class Navbar extends Component {
                   </ul>
                 </li>
               </ul>
-              <form className="d-flex" role="search" onSubmit={(e)=>this.postSearch(e)}>
+              <form
+                className="d-flex"
+                role="search"
+                onSubmit={(e) => this.postSearch(e)}
+              >
                 <input
                   className="form-control me-2"
                   type="search"
                   name="search"
                   placeholder="Search"
-                  onChange={(e)=>this.setState({search:e.target.value})}
+                  onChange={(e) => this.setState({ search: e.target.value })}
                   value={this.state.search}
                   aria-label="Search"
                 />
