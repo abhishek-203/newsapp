@@ -64,7 +64,7 @@ export default class Navbar extends Component {
                 <li className="nav-item dropdown">
                   <a
                     className="nav-link text-light dropdown-toggle"
-                    href="#"
+                    // href="#"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
@@ -109,7 +109,7 @@ export default class Navbar extends Component {
                 </li>
                 <li className="nav-item dropdown">
                   <a className="nav-link text-light dropdown-toggle"
-                    href="#"
+                    // href="#"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
