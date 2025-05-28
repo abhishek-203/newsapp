@@ -15,7 +15,8 @@ export default class Home extends Component {
     try {
       // let response = await fetch(`https://newsapi.org/v2/everything?q=${query}&language=${this.props.language}&page=1&pageSize=12&sortBy=publishedAt&apiKey=e4336a0cea4d49149177333158b05fa3`)
       let response = await fetch(
-        `http://localhost:5000/api/news?q=${this.props.q}&language=${this.props.language}&page=1&pageSize=12`
+        // `http://localhost:5000/api/news?q=${this.props.q}&language=${this.props.language}&page=1&pageSize=12`
+        `https://newsapp-iota-one.vercel.app/news?q=${this.props.q}&language=${this.props.language}&page=1&pageSize=12`
       );
 
       if (!response.ok) {
@@ -43,7 +44,8 @@ export default class Home extends Component {
       //   `https://newsapi.org/v2/everything?q=${this.props.q}&language=${this.props.language}&page=${this.state.page}&pageSize=12&sortBy=publishedAt&apiKey=e4336a0cea4d49149177333158b05fa3`
       // );
       let response = await fetch(
-        `http://localhost:5000/api/news?q=${this.props.q}&language=${this.props.language}&page=1&pageSize=12`
+        // `http://localhost:5000/api/news?q=${this.props.q}&language=${this.props.language}&page=1&pageSize=12`
+        `https://newsapp-iota-one.vercel.app/news?q=${this.props.q}&language=${this.props.language}&page=1&pageSize=12`
       );
 
       if (!response.ok) {
